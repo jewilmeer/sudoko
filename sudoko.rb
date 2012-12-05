@@ -6,9 +6,9 @@ class Sudoko
 		@field = Field.new()  
 	end
 
-	def print_sudoko
-		self.field.blocks.each {|each_block| each_block.print) }
-	end	
+#	def print_sudoko
+#		self.field.blocks.each {|each_block| each_block.print) }
+#	end	
 end
 
 #fields
@@ -114,7 +114,7 @@ class TestSudoko < MiniTest::Unit::TestCase
 	end
 
 	def test_print
-		sud = Sudoko.new()
-		sud.print_sudoko
+	#	sud = Sudoko.new()
+	#	sud.print_sudoko
 	end	
 end

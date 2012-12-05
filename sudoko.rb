@@ -3,7 +3,7 @@ require 'minitest/autorun'
 class Sudoko
 	attr_accessor :field
 	def initialize()
-		@field = Field.new()  
+		@field = Field.new
 	end
 
 #	def print_sudoko
@@ -21,7 +21,7 @@ class Field
 	end
 
 	def squares_per_block
-		return (@number_of_squares / @number_of_blocks)
+		(@number_of_squares / @number_of_blocks)
 	end
 
 	def create_blocks
@@ -41,7 +41,7 @@ class Block
 	end
 
 	def identity 
-		return 0
+	 0
 	end
 	def create_squares
 		@squares = Array.new(number_of_squares)	
@@ -73,48 +73,43 @@ end
 #tests
 class TestSudoko < MiniTest::Unit::TestCase
 	def test_setup
-		sud = Sudoko.new()
+		sud = Sudoko.new
 	end
 	def test_field
-		sud = Sudoko.new()
+		sud = Sudoko.new
 		refute_nil sud.field
 	end
 	def test_field_size
-		sud = Sudoko.new()
+		sud = Sudoko.new
 		field = sud.field
 		assert(field.number_of_squares = (9*9))
 	end
-	def test_blocks
-		sud = Sudoko.new()
-		field = sud.field
-		refute_nil sud.field
-		field.blocks.each {|each| assert(each.field = field)}
-	end
+
 	def test_block_squares_ratio
-		sud = Sudoko.new()
+		sud = Sudoko.new
 		field = sud.field
 		assert(field.number_of_squares = (field.number_of_blocks*field.squares_per_block))
 	end
 	def test_block_identity
-		sud = Sudoko.new()
+		sud = Sudoko.new
 		field = sud.field
-		field.blocks.each {|each| refute_nil(each.identity)} 
+		field.blocks.each {|block| refute_nil(block.identity)} 
 	end
 
 	def test_squares
-		sud = Sudoko.new()
+		sud = Sudoko.new
 		field = sud.field
-		field.blocks.each do |each| 
-			each.squares.each do |eac| 
-				assert(eac.block = each)
-				assert(eac.number > 0)
-				assert(eac.number <= field.squares_per_block)
+		field.blocks.each do |block| 
+			block.squares.each do |square| 
+				assert(square.block = block)
+				assert(square.number > 0)
+				assert(square.number <= field.squares_per_block)
 			end
 		end
 	end
 
 	def test_print
-	#	sud = Sudoko.new()
+	#	sud = Sudoko.new
 	#	sud.print_sudoko
 	end	
 end

@@ -44,6 +44,7 @@ class Block
 	 0
 	end
 	def create_squares
+		#makes this a range ie: *(1..9)
 		@squares = Array.new(number_of_squares)	
 		@number_of_squares.times {|idx| @squares[idx] = Square.new(idx+1) }
 	end
@@ -57,7 +58,7 @@ class Square
 		@number = number
 	end
 	def to_s 
-		"#{@number}"
+		self.number.to_s
 	end
 end
 
@@ -82,13 +83,13 @@ class TestSudoko < MiniTest::Unit::TestCase
 	def test_field_size
 		sud = Sudoko.new
 		field = sud.field
-		assert(field.number_of_squares = (9*9))
+		assert_equal(field.number_of_squares, (9*9))
 	end
 
 	def test_block_squares_ratio
 		sud = Sudoko.new
 		field = sud.field
-		assert(field.number_of_squares = (field.number_of_blocks*field.squares_per_block))
+		assert_equal(field.number_of_squares, (field.number_of_blocks*field.squares_per_block))
 	end
 	def test_block_identity
 		sud = Sudoko.new
@@ -101,7 +102,7 @@ class TestSudoko < MiniTest::Unit::TestCase
 		field = sud.field
 		field.blocks.each do |block| 
 			block.squares.each do |square| 
-				assert(square.block = block)
+				assert_equal(square.block, block)
 				assert(square.number > 0)
 				assert(square.number <= field.squares_per_block)
 			end
